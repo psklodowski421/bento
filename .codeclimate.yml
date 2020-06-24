@@ -1,0 +1,26 @@
+version: "2"
+plugins:
+  rubocop:
+    enabled: true
+    channel: rubocop-0-86
+  eslint:
+    enabled: true
+  csslint:
+    enabled: true
+  scss-lint:
+    enabled: true
+  brakeman:
+    enabled: true
+checks:
+  similar-code:
+    enabled: false
+exclude_patterns:
+  - "spec/"
+  - "**/specs/"
+  - "db/*"
+  - "bin/**/*"
+  - "db/**/*"
+  - "config/**/*"
+  - "public/**/*"
+  - "vendor/**/*"
+  - "node_modules/**/*"

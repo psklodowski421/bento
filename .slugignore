@@ -1,0 +1,5 @@
+/.circleci
+/.git
+/spec
+.solargraph.yml
+README.md

@@ -46,4 +46,9 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+  config.action_view.raise_on_missing_translations = true
+  config.assets.raise_runtime_errors = true
+  config.action_mailer.default_url_options = { host: "www.example.com" }
+  config.action_mailer.asset_host = "http://www.example.com"
+  config.active_job.queue_adapter = :inline
 end

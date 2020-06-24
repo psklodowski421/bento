@@ -1,0 +1,3 @@
+web: bundle exec puma
+webpack: ./bin/webpack-dev-server --quiet
+worker: bundle exec sidekiq -t 25 -C config/sidekiq.yml

@@ -1,3 +1,5 @@
+require Rails.root.join("config/smtp")
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -27,6 +29,7 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
+  config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
@@ -55,12 +58,16 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
+  cache_servers = %w[redis://cache-01:6379/0 redis://cache-02:6379/0]
+  config.cache_store = :redis_cache_store, { url: cache_servers }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "bento_production"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = SMTP_SETTINGS
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -88,6 +95,15 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
+  config.middleware.use Rack::Deflater
+  config.public_file_server.headers = {
+    "Cache-Control" => "public, max-age=31557600",
+  }
+  config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }
+  config.action_mailer.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))
+  config.force_ssl = true
 
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector

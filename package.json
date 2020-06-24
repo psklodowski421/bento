@@ -1,16 +1,28 @@
 {
   "name": "bento",
   "private": true,
+  "scripts": {
+    "pretest": "rm -rf .jest-cache",
+    "test": "jest --no-cache",
+    "test:watch": "jest --watch --no-cache",
+    "test:ci": "jest --ci --runInBand --no-cache --coverage",
+    "webpacker-start": "webpack-dev-server -d --config webpack.dev.config.js --content-base public/ --progress --colors"
+  },
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "4.2.2",
+    "@rails/webpacker": "5.1.1",
     "stimulus": "^1.1.1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "jest": "^26.1.0",
+    "jest-extended": "^0.11.5",
+    "jest-fetch-mock": "^3.0.3",
+    "jest-transform-stub": "^2.0.0",
+    "prettier": "^2.0.5",
     "webpack-dev-server": "^3.11.0"
   }
 }

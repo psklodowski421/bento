@@ -1,0 +1,187 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+
+defaults: &defaults
+  working_directory: ~/bento
+
+references:
+  default_docker_ruby_executor: &default_docker_ruby_executor
+    image: circleci/ruby:2.7.1-node-browsers
+    environment:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: vendor/bundle
+      PGHOST: 127.0.0.1
+      PGUSER: postgres
+      PGPASSWORD: ""
+      RAILS_ENV: test
+      RACK_ENV: test
+      NODE_ENV: test
+  postgres: &postgres
+    image: circleci/postgres:12.1
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: bento_test
+      POSTGRES_PASSWORD: ""
+  redis: &redis
+    image: circleci/redis:5.0.7-alpine
+
+jobs:
+  build:
+    <<: *defaults
+    docker:
+      - *default_docker_ruby_executor
+    steps:
+      - checkout
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      # Restore bundle cache if there's an existing one
+      - restore_cache:
+          keys:
+            - bento-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - bento-bundle-v2-
+      - run:
+          name: Bundle Install
+          command: bundle check --path vendor/bundle || bundle install --deployment
+      # Store bundle cache if it's changed
+      - save_cache:
+          key: bento-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      # Restore yarn cache if there's an existing one
+      - restore_cache:
+          keys:
+            - bento-yarn-{{ checksum "yarn.lock" }}
+            - bento-yarn-
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+      # Store yarn cache if it's changed
+      - save_cache:
+          key: bento-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      # Restore assets cache if there's an existing one
+      - restore_cache:
+          keys:
+            - assets-{{ .Branch }}-{{ .Revision }}
+            - assets-{{ .Branch }}
+            - assets
+      - run:
+          name: Precompile assets
+          command: bundle exec rake webpacker:compile
+      # Store assets cache if it's changed
+      - save_cache:
+          key: assets-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - public/packs-test
+            - public/assets
+            - tmp/cache/webpacker
+            - tmp/cache/assets/sprockets
+      - run:
+          name: Bundle audit
+          command: bundle exec rake bundler:audit
+      - run:
+          name: Rubocop
+          command: bundle exec rake rubocop
+      # Run if you have ESLint enabled
+      # - run:
+      #     name: eslint
+      #     command: yarn run eslint
+      - run:
+          name: i18n
+          command: bundle exec rake i18n
+  test:
+    <<: *defaults
+    docker:
+      - *default_docker_ruby_executor
+      - *postgres
+      - *redis
+    environment:
+      CC_TEST_REPORTER_ID: b9da2d4ade9342d594b98e89570c563964e5f4c2ac00c47a41629c867e0ae6dd
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - bento-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - bento-bundle-v2-
+      - run:
+          name: Bundle Install
+          command: bundle check --path=vendor/bundle || bundle install --path vendor/bundle
+      - restore_cache:
+          keys:
+            - bento-yarn-{{ checksum "yarn.lock" }}
+            - bento-yarn-
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+      - restore_cache:
+          keys:
+            - assets-{{ .Branch }}-{{ .Revision }}
+            - assets-{{ .Branch }}
+            - assets
+      - run:
+          name:  Download cc-test-reporter
+          command: |
+            mkdir -p tmp/
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
+            chmod +x ./tmp/cc-test-reporter
+      - persist_to_workspace:
+          root: tmp
+          paths:
+            - cc-test-reporter
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      # Run rspec in parallel
+      - run:
+          name: Run rspec tests
+          command: |
+            mkdir /tmp/test-results
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
+            ./tmp/cc-test-reporter format-coverage -t simplecov -o tmp/codeclimate.backend.json coverage/backend/.resultset.json
+      - persist_to_workspace:
+          root: tmp
+          paths: 
+            - codeclimate.backend.json
+      # Collect reports      
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+      # Run yarn tests
+      - run: 
+          name: Run yarn tests
+          command: |
+            yarn run test:ci
+            ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/codeclimate.frontend.json coverage/frontend/lcov.info
+      - persist_to_workspace:
+          root: tmp
+          paths: 
+            - codeclimate.frontend.json
+      # Upload reports
+      - run:
+          name: Upload coverage results to Code Climate
+          command: |
+            ./tmp/cc-test-reporter sum-coverage tmp/codeclimate.*.json -p 2 -o tmp/codeclimate.total.json
+            ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.total.json
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+
