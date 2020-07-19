@@ -15,12 +15,13 @@ checks:
   similar-code:
     enabled: false
 exclude_patterns:
+  - .bundle/
+  - app/javascript/**/*.spec.js
   - "spec/"
-  - "**/specs/"
-  - "db/*"
-  - "bin/**/*"
-  - "db/**/*"
-  - "config/**/*"
-  - "public/**/*"
-  - "vendor/**/*"
-  - "node_modules/**/*"
+  - "db/"
+  - "bin/"
+  - "config/"
+  - "public/"
+  - "vendor/"
+  - "node_modules/"
+  - "**/*.md"
