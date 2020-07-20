@@ -15,8 +15,8 @@ checks:
   similar-code:
     enabled: false
 exclude_patterns:
-  - .bundle/
-  - app/javascript/**/*.spec.js
+  - ".bundle/"
+  - "babel.config.js"
   - "spec/"
   - "db/"
   - "bin/"
