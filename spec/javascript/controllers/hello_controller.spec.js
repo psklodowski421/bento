@@ -26,6 +26,6 @@ describe('HelloController', () => {
 
   it('renders a greeting text', () => {
     const result = document.querySelector('h1').innerHTML;
-    expect(result).toEqual('Hello, Stimulus!');
+    expect(result).toEqual('Itadakimasu! 🍱');
   });
 });

@@ -33,11 +33,11 @@ I created this template so you can hit the ground running and focus on your proj
 
 ### What's in the box?
 
-Bento is designed to be lean and healthy with all the essentials for a productive development and testing workflow.
+Bento is designed to be lean and healthy with all the essentials for a productive and enjoyable development/testing workflow.
 
 It provides a few staples:
 
-- All the major [Rails](https://rubyonrails.org/) 6 defaults
+- All the major [Rails](https://rubyonrails.org/) 6 defaults (except for Test Unit in favour of Rspec)
 - [Yarn](https://yarnpkg.com/) & [Webpacker](https://github.com/rails/webpacker) 5 for modern JavaScript with proper split css bundles. See `app/javascript/packs` for an example
 - [Turbolinks](https://github.com/turbolinks/turbolinks) and [Stimulus](https://stimulusjs.org/) for SPA-like JavaScript sprinkles without the SPA complexity.
 - [Jest](https://jestjs.io/) for easy JavaScript testing. See `app/javascript/controllers` for an example
