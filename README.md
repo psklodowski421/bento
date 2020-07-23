@@ -72,7 +72,7 @@ Set up your machine:
 
 Make sure the tests pass:
 
-    bundle exec rspec
+    ./bin/rake
 
 Go and build!
 
