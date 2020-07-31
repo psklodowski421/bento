@@ -1,7 +1,12 @@
-require Rails.root.join("config/smtp")
+require Rails.root.join('config/smtp')
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+
+  if ENV.fetch('HEROKU_APP_NAME', '').include?('staging-pr-')
+    ENV['APPLICATION_HOST'] = ENV['HEROKU_APP_NAME'] + '.herokuapp.com'
+    ENV['ASSET_HOST'] = ENV['HEROKU_APP_NAME'] + '.herokuapp.com'
+  end
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -16,7 +21,7 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
+  # Ensures that a master key has been made available in either ENV['RAILS_MASTER_KEY']
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true
 
@@ -29,7 +34,7 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
-  config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))
+  config.action_controller.asset_host = ENV.fetch('ASSET_HOST', ENV.fetch('APPLICATION_HOST'))
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
@@ -63,7 +68,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "bento_production"
+  # config.active_job.queue_name_prefix = 'bento_production'
 
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
@@ -87,7 +92,7 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
@@ -96,13 +101,13 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
+  config.middleware.use Rack::CanonicalHost, ENV.fetch('APPLICATION_HOST')
   config.middleware.use Rack::Deflater
   config.public_file_server.headers = {
-    "Cache-Control" => "public, max-age=31557600",
+    'Cache-Control' => 'public, max-age=31557600',
   }
-  config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }
-  config.action_mailer.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))
+  config.action_mailer.default_url_options = { host: ENV.fetch('APPLICATION_HOST') }
+  config.action_mailer.asset_host = ENV.fetch('ASSET_HOST', ENV.fetch('APPLICATION_HOST'))
   config.force_ssl = true
 
   # Inserts middleware to perform automatic connection switching.

@@ -4,8 +4,6 @@
   <strong>A deliciously modern vanilla Rails stack for your next big idea.</strong>
 </div>
 
-<br>
-
 <p align="center">
   <a href="https://www.ruby-lang.org/en/">
     <img src="https://img.shields.io/badge/Ruby-v2.7.1-green.svg" alt="ruby version">
@@ -24,6 +22,13 @@
   </a>
   <img src="https://img.shields.io/github/languages/code-size/darokel/bento" alt="GitHub code size in bytes">
 </p>
+
+<p align="center">
+  <a href="https://heroku.com/deploy?template=https://github.com/darokel/bento/tree/master" alt="Deploy to Heroku">
+    <img alt="Deploy" src="https://www.herokucdn.com/deploy/button.svg"/>
+  </a>
+</p>
+
 
 ## What is Bento?
 
@@ -78,7 +83,17 @@ Go and build!
 
 ## Deploying
 
-This repo comes with a 1-click deployment option to Heroku. There are also some scripts to enable easy review apps for PRs if needed. 
+This repo comes with a 1-click deployment option to Heroku:
+
+<p>
+  <a href="https://heroku.com/deploy?template=https://github.com/darokel/bento/tree/master" alt="Deploy to Heroku">
+    <img alt="Deploy" src="https://www.herokucdn.com/deploy/button.svg"/>
+  </a>
+</p>
+
+There are also some scripts available to help with deploying to Heroku and setting up review apps. 
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for more info on using the template with Heroku.
 
 Alternatively, you're able to deploy this to any platform of your choice. 
 

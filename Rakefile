@@ -10,10 +10,14 @@ if %w(development test).include? Rails.env
   RuboCop::RakeTask.new
 
   task :i18n do
-    system "i18n-tasks missing"
-    system "i18n-tasks unused"
+    system 'i18n-tasks missing'
+    system 'i18n-tasks unused'
+  end
+
+  task :javascript_specs do
+    system 'yarn test'
   end
 
   task(:default).clear
-  task default: ['bundler:audit', :rubocop, :i18n, :spec]
+  task default: ['bundler:audit', :rubocop, :i18n, :spec, :javascript_specs]
 end

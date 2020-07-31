@@ -21,3 +21,26 @@ if [ ! -d .git/safe ] && echo $PATH | grep .git/safe > /dev/null; then
   echo "-> When you trust this repo, remember to run: mkdir -p .git/safe"
   echo
 fi
+
+# Change "bento" to your own app name.
+
+if heroku join --app bento-staging > /dev/null 2>&1; then
+  git remote add staging git@heroku.com:bento-staging.git || true
+  printf 'You are a collaborator on the "bento-staging" Heroku app
+'
+else
+  printf 'Ask for access to the "bento-staging" Heroku app
+'
+fi
+
+if heroku join --app bento-production > /dev/null 2>&1; then
+  git remote add production git@heroku.com:bento-production.git || true
+  printf 'You are a collaborator on the "bento-production" Heroku app
+'
+else
+  printf 'Ask for access to the "bento-production" Heroku app
+'
+fi
+
+
+git config heroku.remote staging
