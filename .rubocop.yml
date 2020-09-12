@@ -17,11 +17,20 @@ AllCops:
     - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
     - 'spec/support/**/*'
-    - node_modules/**/*
+    - 'node_modules/**/*'
 
-Metrics/AbcSize:
+Metrics/BlockLength:
   Exclude:
-    - 'spec/features/**/*'
+    - "*.gemspec"
+    - "Gemfile"
+    - "config/routes.rb"
+    - "spec/**/*"
+Metrics/ClassLength:
+  Exclude:
+    - "spec/**/*"
+Metrics/MethodLength:
+  Exclude:
+    - "spec/**/*"
 
 Layout/LineLength:
   Max: 120 # Increase line length to 120

@@ -13,9 +13,6 @@
     }
   ],
   "env": {
-    "APPLICATION_HOST": {
-      "required": true
-    },
     "EMAIL_RECIPIENTS": {
       "required": true
     },
@@ -27,6 +24,9 @@
     },
     "RACK_ENV": {
       "required": true
+    },
+    "RAILS_MASTER_KEY": {
+     "required": true
     },
     "RAILS_LOG_TO_STDOUT": {
       "value": "true"
