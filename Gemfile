@@ -11,6 +11,7 @@ gem 'inline_svg', '~> 1.7'
 gem 'oj', '~> 3.10'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
+gem 'rack-attack', '~> 6.3'
 gem 'rack-canonical-host', '~> 1.0'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
 gem 'recipient_interceptor', '~> 0.2'
@@ -69,6 +70,7 @@ group :test do
 end
 
 group :production do
+  gem 'cloudflare-rails', '~> 0.6'
   gem 'rack-timeout', '~> 0.6'
   gem 'rails_12factor', '0.0.3'
 end
