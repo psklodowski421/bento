@@ -11,14 +11,24 @@ module.exports = {
   collectCoverage: true,
   coverageDirectory: 'coverage/frontend',
   coverageReporters: ['text', 'lcov'],
-  collectCoverageFrom: ['<rootDir>/app/javascript/**/*.js'],
+  collectCoverageFrom: [
+    '<rootDir>/app/javascript/**/*.js',
+    '!<rootDir>/app/javascript/**/index.js',
+    '!<rootDir>/app/javascript/packs/*.js',
+    '!<rootDir>/app/javascript/*.js',
+    '<rootDir>/app/components/**/*.js',
+  ],
   reporters: ['default'],
-  setupFilesAfterEnv: ['<rootDir>/spec/javascript/setupTests.js'],
+  setupFilesAfterEnv: ['<rootDir>/app/javascript/setupTests.js'],
   transformIgnorePatterns: ['node_modules/*'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/app/javascript/$1',
   },
-  roots: ['spec/javascript'],
-  testMatch: ['**/spec/javascript/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)'],
+  roots: ['app/javascript', 'app/components'],
+  testMatch: [
+    '**/app/javascript/**/*.spec.(js|jsx|ts|tsx)',
+    '**/app/components/**/*.spec.(js|jsx|ts|tsx)',
+  ],
   testURL: 'http://localhost/',
+  testPathIgnorePatterns: [],
 };

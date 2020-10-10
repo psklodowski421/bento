@@ -1,6 +1,6 @@
 import { Application } from 'stimulus';
-import HelloController from '../../../app/javascript/controllers/hello_controller';
-import { cleanupDOM, mountDOM } from '../utils';
+import HelloController from './component_controller';
+import { cleanupDOM, mountDOM } from '../../javascript/utils';
 
 const startStimulus = () => {
   const application = Application.start();

@@ -1,4 +1,1 @@
-<div data-controller="hello">
-  <h1 data-target="hello.output"></h1>
-  <h2> You have viewed this page <%= @page_hits %> times! </h2>
-</div>
+<%= render(Hello::Component.new(@page_hits)) %>

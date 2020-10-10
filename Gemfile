@@ -22,6 +22,7 @@ gem 'sass-rails', '>= 6'
 gem 'sidekiq', '~> 6.0'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', '~> 1.2', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'view_component', '~> 2.19', require: 'view_component/engine'
 gem 'webpacker', '~> 5.0'
 
 group :development do

@@ -8,6 +8,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 
 require 'rspec/rails'
 require "action_cable/testing/rspec"
+require "view_component/test_helpers"
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
@@ -27,6 +28,7 @@ end
 
 RSpec.configure do |config|
   config.include SystemTestHelper, type: :system
+  config.include ViewComponent::TestHelpers, type: :component
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
