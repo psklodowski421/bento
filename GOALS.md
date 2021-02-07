@@ -17,6 +17,7 @@ gem 'inline_svg'
 gem 'oj'
 gem 'pg'
 gem 'puma'
+gem 'rack-attack'
 gem 'rack-canonical-host'
 gem 'rails'
 gem 'recipient_interceptor'
@@ -33,6 +34,7 @@ gem 'webpacker'
 The production group only contains:
 
 ```ruby
+gem 'cloudflare-rails'
 gem 'rack-timeout'
 gem 'rails_12factor'
 ```
@@ -47,7 +49,7 @@ Bento does not enforce any UI framework, leaving you with the choice to choose y
 
 ### JavaScript
 
-As Bento aims to adhere to the Rails doctrine, it adopts Turbolinks and Stimulus for SPA-like JavaScript sprinkles without the SPA complexity.
+As Bento aims to adhere to the Rails doctrine, it adopts the [Hotwire](https://hotwire.dev/) stack for SPA-like JavaScript sprinkles without the SPA complexity. 
 
 ## Other Goodies
 

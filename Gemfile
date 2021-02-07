@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '2.7.2'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'image_processing', '~> 1.2'
@@ -13,16 +13,15 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'rack-attack', '~> 6.3'
 gem 'rack-canonical-host', '~> 1.0'
-gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
+gem 'rails', '~> 6.1.0'
 gem 'recipient_interceptor', '~> 0.2'
 gem 'redis', '~> 4.0'
 gem 'redis-namespace', '~> 1.7'
 gem 'redis-rack-cache', '~> 2.2'
 gem 'sass-rails', '>= 6'
 gem 'sidekiq', '~> 6.0'
-gem 'turbolinks', '~> 5'
+gem 'turbo-rails', '~> 0.5.2'
 gem 'tzinfo-data', '~> 1.2', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'view_component', '~> 2.19', require: 'view_component/engine'
 gem 'webpacker', '~> 5.0'
 
 group :development do
@@ -71,7 +70,7 @@ group :test do
 end
 
 group :production do
-  gem 'cloudflare-rails', '~> 0.6'
+  gem 'cloudflare-rails', '~> 1.1'
   gem 'rack-timeout', '~> 0.6'
   gem 'rails_12factor', '0.0.3'
 end

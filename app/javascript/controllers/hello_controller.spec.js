@@ -1,6 +1,6 @@
 import { Application } from 'stimulus';
-import HelloController from './component_controller';
-import { cleanupDOM, mountDOM } from '../../javascript/utils';
+import HelloController from './hello_controller';
+import { cleanupDOM, mountDOM } from '../utils/test';
 
 const startStimulus = () => {
   const application = Application.start();
@@ -15,7 +15,7 @@ describe('HelloController', () => {
 
     container = mountDOM(`
       <div data-controller="hello">
-        <h1 data-target="hello.output"></h1>
+        <h1 data-hello-target="output"></h1>
       </div>
     `);
   });

@@ -16,7 +16,7 @@ module.exports = {
     '!<rootDir>/app/javascript/**/index.js',
     '!<rootDir>/app/javascript/packs/*.js',
     '!<rootDir>/app/javascript/*.js',
-    '<rootDir>/app/components/**/*.js',
+    '!<rootDir>/app/javascript/utils/test.js',
   ],
   reporters: ['default'],
   setupFilesAfterEnv: ['<rootDir>/app/javascript/setupTests.js'],
@@ -24,11 +24,8 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/app/javascript/$1',
   },
-  roots: ['app/javascript', 'app/components'],
-  testMatch: [
-    '**/app/javascript/**/*.spec.(js|jsx|ts|tsx)',
-    '**/app/components/**/*.spec.(js|jsx|ts|tsx)',
-  ],
+  roots: ['app/javascript'],
+  testMatch: ['**/app/javascript/**/*.spec.(js|jsx|ts|tsx)'],
   testURL: 'http://localhost/',
   testPathIgnorePatterns: [],
 };

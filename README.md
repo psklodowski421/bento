@@ -6,10 +6,10 @@
 
 <p align="center">
   <a href="https://www.ruby-lang.org/en/">
-    <img src="https://img.shields.io/badge/Ruby-v2.7.1-green.svg" alt="ruby version">
+    <img src="https://img.shields.io/badge/Ruby-v2.7.2-green.svg" alt="ruby version">
   </a>
   <a href="http://rubyonrails.org/">
-    <img src="https://img.shields.io/badge/Rails-v6.0.3-brightgreen.svg" alt="rails version">
+    <img src="https://img.shields.io/badge/Rails-v6.1.0-brightgreen.svg" alt="rails version">
   </a>
   <a href="https://circleci.com/gh/darokel/bento">
     <img src="https://circleci.com/gh/darokel/bento.svg?style=svg" alt="circle ci badge">
@@ -44,7 +44,7 @@ It provides a few staples:
 
 - All the major [Rails](https://rubyonrails.org/) 6 defaults (except for Test Unit in favour of Rspec)
 - [Yarn](https://yarnpkg.com/) & [Webpacker](https://github.com/rails/webpacker) 5 for modern JavaScript with proper split css bundles. See `app/javascript/packs` for an example
-- [Turbolinks](https://github.com/turbolinks/turbolinks) and [Stimulus](https://stimulusjs.org/) for SPA-like JavaScript sprinkles without the SPA complexity.
+- [Hotwire](https://hotwire.dev/) Stack ([Turbo](https://turbo.hotwire.dev/) & [Stimulus](https://stimulus.hotwire.dev/)) for SPA-like JavaScript sprinkles without the SPA complexity.
 - [Jest](https://jestjs.io/) for easy JavaScript testing. See `app/javascript/controllers` for an example
 - [Sidekiq](https://sidekiq.org/) for background jobs
 - [Rspec](https://rspec.info/) for unit and system tests with 
