@@ -13,7 +13,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'rack-attack', '~> 6.3'
 gem 'rack-canonical-host', '~> 1.0'
-gem 'rails', '~> 6.1.0'
+gem 'rails', '~> 6.1.2', '>= 6.1.2.1'
 gem 'recipient_interceptor', '~> 0.2'
 gem 'redis', '~> 4.0'
 gem 'redis-namespace', '~> 1.7'
@@ -70,7 +70,7 @@ group :test do
 end
 
 group :production do
-  gem 'cloudflare-rails', '~> 1.1'
+  gem 'cloudflare-rails', '~> 1.1', '>= 1.1.0'
   gem 'rack-timeout', '~> 0.6'
   gem 'rails_12factor', '0.0.3'
 end
