@@ -48,10 +48,10 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3'
   gem 'rspec_junit_formatter', '~> 0.4'
   gem 'rspec-rails', '~> 4.0'
-  gem 'rubocop', '~> 0.86'
-  gem 'rubocop-performance', '~> 1.6', require: false
-  gem 'rubocop-rails', '~> 2.6', require: false
-  gem 'rubocop-rspec', '~> 1.40', require: false
+  gem 'rubocop', '~> 0.93', '>= 0.93.1'
+  gem 'rubocop-performance', '~> 1.9', '>= 1.9.1', require: false
+  gem 'rubocop-rails', '~> 2.9', '>= 2.9.1', require: false
+  gem 'rubocop-rspec', '~> 1.44', '>= 1.44.1', require: false
 end
 
 group :test do
