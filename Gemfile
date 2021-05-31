@@ -62,7 +62,7 @@ group :test do
   gem 'selenium-webdriver', '~> 3.142'
   gem 'shoulda-matchers', '~> 4.3'
   gem 'simplecov', '0.17.1', require: false
-  gem 'site_prism', '~> 3.4'
+  gem 'site_prism', '~> 3.7'
   gem 'timecop', '~> 0.9'
   gem 'vcr', '~> 6.0'
   gem 'webdrivers', '~> 4.6', '>= 4.6.0'
