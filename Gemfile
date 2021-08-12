@@ -12,7 +12,7 @@ gem 'oj', '~> 3.10'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3', '>= 4.3.8'
 gem 'rack-attack', '~> 6.3'
-gem 'rack-canonical-host', '~> 1.0'
+gem 'rack-canonical-host', '~> 1.0', '>= 1.0.0'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 gem 'recipient_interceptor', '~> 0.2'
 gem 'redis', '~> 4.0'
@@ -25,7 +25,7 @@ gem 'tzinfo-data', '~> 1.2', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'webpacker', '~> 5.2', '>= 5.2.1'
 
 group :development do
-  gem 'letter_opener', '~> 1.7'
+  gem 'letter_opener', '~> 1.7', '>= 1.7.0'
   gem 'listen', '~> 3.2'
   gem 'rack-mini-profiler', '~> 2.0', require: false
   gem 'spring', '~> 2.1'
@@ -55,18 +55,18 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.34', '>= 3.34.0'
+  gem 'capybara', '~> 3.35', '>= 3.35.3'
   gem 'codeclimate-test-reporter', '~> 1.0'
   gem 'formulaic', '~> 0.4', '>= 0.4.1'
-  gem 'launchy', '~> 2.5'
+  gem 'launchy', '~> 2.5', '>= 2.5.0'
   gem 'selenium-webdriver', '~> 3.142'
   gem 'shoulda-matchers', '~> 4.3'
   gem 'simplecov', '0.17.1', require: false
-  gem 'site_prism', '~> 3.7'
+  gem 'site_prism', '~> 3.7', '>= 3.7.1'
   gem 'timecop', '~> 0.9'
   gem 'vcr', '~> 6.0'
   gem 'webdrivers', '~> 4.6', '>= 4.6.0'
-  gem 'webmock', '~> 3.8'
+  gem 'webmock', '~> 3.13', '>= 3.13.0'
 end
 
 group :production do
