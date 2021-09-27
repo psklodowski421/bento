@@ -6,8 +6,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.0'
 
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'cssbundling-rails', '>= 0.1.0'
 gem 'image_processing', '~> 1.2'
 gem 'inline_svg', '~> 1.7', '>= 1.7.2'
+gem 'jsbundling-rails', '~> 0.1.0'
 gem 'oj', '~> 3.10'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3', '>= 4.3.8'
@@ -20,17 +22,14 @@ gem 'redis-namespace', '~> 1.7'
 gem 'redis-rack-cache', '~> 2.2'
 gem 'sass-rails', '>= 6.0.0'
 gem 'sidekiq', '~> 6.0'
-gem 'turbo-rails', '~> 0.5.9'
+gem 'stimulus-rails', '>= 0.4.0'
+gem 'turbo-rails', '>= 0.7.11'
 gem 'tzinfo-data', '~> 1.2', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'webpacker', '~> 5.4', '>= 5.4.0'
 
 group :development do
   gem 'letter_opener', '~> 1.7', '>= 1.7.0'
   gem 'listen', '~> 3.2'
   gem 'rack-mini-profiler', '~> 2.0', require: false
-  gem 'spring', '~> 2.1'
-  gem 'spring-commands-rspec', '~> 1.0'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 4.1.0'
 end
 

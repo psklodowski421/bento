@@ -1,12 +1,9 @@
 module.exports = {
   moduleDirectories: ['node_modules', 'app/javascript'],
-  moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
+  moduleFileExtensions: ['js', 'ts'],
   automock: false,
   resetMocks: true,
-  transform: {
-    '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
-    '^.+\\.(js|jsx)?$': 'babel-jest',
-  },
+  transform: {'^.+\\.(js)?$': 'babel-jest'},
   cacheDirectory: '<rootDir>/.jest-cache',
   collectCoverage: true,
   coverageDirectory: 'coverage/frontend',
@@ -14,18 +11,18 @@ module.exports = {
   collectCoverageFrom: [
     '<rootDir>/app/javascript/**/*.js',
     '!<rootDir>/app/javascript/**/index.js',
-    '!<rootDir>/app/javascript/packs/*.js',
-    '!<rootDir>/app/javascript/*.js',
+    '!<rootDir>/app/javascript/**/application.js',
     '!<rootDir>/app/javascript/utils/test.js',
   ],
   reporters: ['default'],
-  setupFilesAfterEnv: ['<rootDir>/app/javascript/setupTests.js'],
+  setupFilesAfterEnv: ['<rootDir>/app/javascript/jestGlobalMocks.js'],
   transformIgnorePatterns: ['node_modules/*'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/app/javascript/$1',
   },
   roots: ['app/javascript'],
-  testMatch: ['**/app/javascript/**/*.spec.(js|jsx|ts|tsx)'],
+  testEnvironment: 'jsdom',
+  testMatch: ['**/app/javascript/**/*.spec.(js|ts)'],
   testURL: 'http://localhost/',
   testPathIgnorePatterns: [],
 };

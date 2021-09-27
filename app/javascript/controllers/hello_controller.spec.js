@@ -1,4 +1,4 @@
-import { Application } from 'stimulus';
+import { Application } from '@hotwired/stimulus';
 import HelloController from './hello_controller';
 import { cleanupDOM, mountDOM } from '../utils/test';
 

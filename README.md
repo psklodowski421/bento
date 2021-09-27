@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/Ruby-v3.0.0-green.svg" alt="ruby version">
   </a>
   <a href="http://rubyonrails.org/">
-    <img src="https://img.shields.io/badge/Rails-v6.1.3.1-brightgreen.svg" alt="rails version">
+    <img src="https://img.shields.io/badge/Rails-v6.1.4.1-brightgreen.svg" alt="rails version">
   </a>
   <a href="https://circleci.com/gh/darokel/bento">
     <img src="https://circleci.com/gh/darokel/bento.svg?style=svg" alt="circle ci badge">
@@ -43,7 +43,7 @@ Bento is designed to be lean and healthy with all the essentials for a productiv
 It provides a few staples:
 
 - All the major [Rails](https://rubyonrails.org/) 6 defaults (except for Test Unit in favour of Rspec)
-- [Yarn](https://yarnpkg.com/) & [Webpacker](https://github.com/rails/webpacker) 5 for modern JavaScript with proper split css bundles. See `app/javascript/packs` for an example
+- Sprockets with [ES Build](https://github.com/evanw/esbuild) via the [JS Bundling](https://github.com/rails/jsbundling-rails) and [CSS Bundling](https://github.com/rails/cssbundling-rails) gems (The new Rails 7 way of bundling JS and CSS)
 - [Hotwire](https://hotwire.dev/) Stack ([Turbo](https://turbo.hotwire.dev/) & [Stimulus](https://stimulus.hotwire.dev/)) for SPA-like JavaScript sprinkles without the SPA complexity.
 - [Jest](https://jestjs.io/) for easy JavaScript testing. See `app/javascript/controllers` for an example
 - [Sidekiq](https://sidekiq.org/) for background jobs
@@ -78,6 +78,10 @@ Set up your machine:
 Make sure the tests pass:
 
     ./bin/rake
+
+Start the server:
+
+    ./bin/dev
 
 Go and build!
 

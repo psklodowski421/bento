@@ -1,30 +1,29 @@
 {
   "name": "bento",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds",
+    "build:css": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules",
     "pretest": "rm -rf .jest-cache",
     "test": "jest --no-cache",
     "test:watch": "jest --watch --no-cache",
-    "test:ci": "jest --ci --runInBand --no-cache --coverage",
-    "webpacker-start": "webpack-dev-server -d --config webpack.dev.config.js --content-base public/ --progress --colors"
+    "test:ci": "jest --ci --runInBand --no-cache --coverage"
   },
   "dependencies": {
-    "@hotwired/turbo-rails": "^7.0.0-beta.5",
-    "@rails/actioncable": "^6.1.4",
-    "@rails/ujs": "^6.1.4",
-    "@rails/activestorage": "^6.1.4",
-    "@rails/webpacker": "^5.4.2",
-    "stimulus": "^2.0.0"
+    "@hotwired/stimulus": "^3.0.0",
+    "@hotwired/turbo-rails": "^7.0.0"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@babel/preset-env": "^7.15.6",
     "@testing-library/dom": "^7.21.1",
-    "jest": "^26.1.0",
-    "jest-extended": "^0.11.5",
-    "jest-fetch-mock": "^3.0.3",
-    "jest-transform-stub": "^2.0.0",
-    "mutationobserver-shim": "^0.3.7",
+    "babel-jest": "^27.2.1",
+    "esbuild": "^0.13.2",
+    "jest": "^27.2",
     "prettier": "^2.0.5",
-    "webpack-dev-server": "^3.11.0"
+    "sass": "^1.42.1"
   }
 }
