@@ -6,19 +6,13 @@
 
 <p align="center">
   <a href="https://www.ruby-lang.org/en/">
-    <img src="https://img.shields.io/badge/Ruby-v3.0.0-green.svg" alt="ruby version">
+    <img src="https://img.shields.io/badge/Ruby-v3.0.2-green.svg" alt="ruby version">
   </a>
   <a href="http://rubyonrails.org/">
     <img src="https://img.shields.io/badge/Rails-v6.1.4.1-brightgreen.svg" alt="rails version">
   </a>
   <a href="https://circleci.com/gh/darokel/bento">
     <img src="https://circleci.com/gh/darokel/bento.svg?style=svg" alt="circle ci badge">
-  </a>
-  <a href="https://codeclimate.com/github/darokel/bento/maintainability">
-    <img src="https://api.codeclimate.com/v1/badges/f6ac1aa0621397643eb2/maintainability" />
-  </a>
-  <a href="https://codeclimate.com/github/darokel/bento/test_coverage">
-    <img src="https://api.codeclimate.com/v1/badges/f6ac1aa0621397643eb2/test_coverage" />
   </a>
   <img src="https://img.shields.io/github/languages/code-size/darokel/bento" alt="GitHub code size in bytes">
 </p>
@@ -47,7 +41,7 @@ It provides a few staples:
 - [Hotwire](https://hotwire.dev/) Stack ([Turbo](https://turbo.hotwire.dev/) & [Stimulus](https://stimulus.hotwire.dev/)) for SPA-like JavaScript sprinkles without the SPA complexity.
 - [Jest](https://jestjs.io/) for easy JavaScript testing. See `app/javascript/controllers` for an example
 - [Sidekiq](https://sidekiq.org/) for background jobs
-- [Rspec](https://rspec.info/) for unit and system tests with 
+- [Rspec](https://rspec.info/) for unit and system tests along with [simplecov](https://github.com/simplecov-ruby/simplecov) for coverage support 
 - [Capybara](https://github.com/teamcapybara/capybara) with headless [Selenium](https://www.selenium.dev/documentation/en/) integration tests and a pre-configured [CircleCI](https://circleci.com/) config ready to go. See `spec/system` for an example. 
 
 See [GOALS.md](GOALS.md) for more information on what's inside Bento and what isn't.

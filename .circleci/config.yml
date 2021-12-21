@@ -9,7 +9,7 @@ defaults: &defaults
 
 references:
   default_docker_ruby_executor: &default_docker_ruby_executor
-    image: circleci/ruby:3.0.0-node-browsers
+    image: circleci/ruby:3.0.2-node-browsers
     environment:
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
@@ -21,13 +21,13 @@ references:
       RACK_ENV: test
       NODE_ENV: test
   postgres: &postgres
-    image: circleci/postgres:12.1
+    image: cimg/postgres:14.0
     environment:
       POSTGRES_USER: postgres
       POSTGRES_DB: bento_test
       POSTGRES_PASSWORD: ""
   redis: &redis
-    image: circleci/redis:5.0.7-alpine
+    image: circleci/redis:6.2.6-alpine
 
 jobs:
   build:
@@ -101,8 +101,6 @@ jobs:
       - *default_docker_ruby_executor
       - *postgres
       - *redis
-    environment:
-      CC_TEST_REPORTER_ID: b9da2d4ade9342d594b98e89570c563964e5f4c2ac00c47a41629c867e0ae6dd
     steps:
       - checkout
       - restore_cache:
@@ -125,16 +123,6 @@ jobs:
             - assets-{{ .Branch }}
             - assets
       - run:
-          name:  Download cc-test-reporter
-          command: |
-            mkdir -p tmp/
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
-            chmod +x ./tmp/cc-test-reporter
-      - persist_to_workspace:
-          root: tmp
-          paths:
-            - cc-test-reporter
-      - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
@@ -146,34 +134,19 @@ jobs:
           command: |
             mkdir /tmp/test-results
             TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-            bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
-            ./tmp/cc-test-reporter format-coverage -t simplecov -o tmp/codeclimate.backend.json coverage/backend/.resultset.json
-      - persist_to_workspace:
-          root: tmp
-          paths: 
-            - codeclimate.backend.json
-      # Collect reports      
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+            COVERAGE=true bundle exec rspec $TESTFILES --profile 10 --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
       # Run yarn tests
       - run: 
           name: Run yarn tests
           command: |
             yarn run test:ci
-            ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/codeclimate.frontend.json coverage/frontend/lcov.info
-      - persist_to_workspace:
-          root: tmp
-          paths: 
-            - codeclimate.frontend.json
-      # Upload reports
-      - run:
-          name: Upload coverage results to Code Climate
-          command: |
-            ./tmp/cc-test-reporter sum-coverage tmp/codeclimate.*.json -p 2 -o tmp/codeclimate.total.json
-            ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.total.json
+      # Collect reports      
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: coverage/frontend
+      - store_artifacts:
+          path: coverage/backend
 
 workflows:
   version: 2
@@ -183,4 +156,3 @@ workflows:
       - test:
           requires:
             - build
-

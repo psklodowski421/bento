@@ -3,27 +3,27 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '3.0.2'
 
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'cssbundling-rails', '>= 0.1.0'
+gem 'cssbundling-rails', '>= 0.2.2'
 gem 'image_processing', '~> 1.2'
 gem 'inline_svg', '~> 1.7', '>= 1.7.2'
-gem 'jsbundling-rails', '~> 0.1.0'
+gem 'jsbundling-rails', '~> 0.1.7'
 gem 'oj', '~> 3.10'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3'
 gem 'rack-attack', '~> 6.3'
 gem 'rack-canonical-host', '~> 1.0', '>= 1.0.0'
-gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
+gem 'rails', '~> 6.1.4', '>= 6.1.4.2'
 gem 'recipient_interceptor', '~> 0.2'
 gem 'redis', '~> 4.0'
 gem 'redis-namespace', '~> 1.7'
 gem 'redis-rack-cache', '~> 2.2'
 gem 'sass-rails', '>= 6.0.0'
 gem 'sidekiq', '~> 6.0'
-gem 'stimulus-rails', '>= 0.4.0'
-gem 'turbo-rails', '>= 0.7.11'
+gem 'stimulus-rails', '>= 0.6.0'
+gem 'turbo-rails', '>= 0.8.0'
 gem 'tzinfo-data', '~> 1.2', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development do
