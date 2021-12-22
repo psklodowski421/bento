@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
-    "@hotwired/turbo-rails": "^7.0.1"
+    "@hotwired/turbo-rails": "^7.1.0"
   },
   "version": "0.1.0",
   "devDependencies": {
