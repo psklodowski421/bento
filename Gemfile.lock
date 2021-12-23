@@ -338,15 +338,15 @@ DEPENDENCIES
   bootsnap
   bullet
   bundler-audit
-  capybara
-  cloudflare-rails
-  cssbundling-rails
-  dotenv-rails
-  factory_bot_rails
+  capybara (>= 3.36.0)
+  cloudflare-rails (>= 2.3.0)
+  cssbundling-rails (>= 1.0.0)
+  dotenv-rails (>= 2.7.6)
+  factory_bot_rails (>= 6.2.0)
   i18n-tasks
   image_processing
-  inline_svg
-  jsbundling-rails
+  inline_svg (>= 1.7.2)
+  jsbundling-rails (>= 1.0.0)
   launchy
   letter_opener
   listen
@@ -363,7 +363,7 @@ DEPENDENCIES
   rails_12factor
   recipient_interceptor
   redis
-  rspec-rails
+  rspec-rails (>= 5.0.2)
   rspec_junit_formatter
   rubocop
   rubocop-performance
@@ -373,14 +373,14 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq
   simplecov
-  site_prism
-  sprockets-rails
-  stimulus-rails
+  site_prism (>= 3.7.3)
+  sprockets-rails (>= 3.4.2)
+  stimulus-rails (>= 1.0.2)
   timecop
-  turbo-rails
+  turbo-rails (>= 1.0.0)
   tzinfo-data
   vcr
-  webdrivers
+  webdrivers (>= 5.0.0)
   webmock
 
 RUBY VERSION

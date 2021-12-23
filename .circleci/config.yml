@@ -48,7 +48,6 @@ jobs:
           name: Bundle Install
           command: |
             bundle config set --local path vendor/bundle
-            bundle config set --local deployment true
             bundle check || bundle install
       # Store bundle cache if it's changed
       - save_cache:

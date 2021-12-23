@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/Ruby-v3.0.2-green.svg" alt="ruby version">
   </a>
   <a href="http://rubyonrails.org/">
-    <img src="https://img.shields.io/badge/Rails-v6.1.4.1-brightgreen.svg" alt="rails version">
+    <img src="https://img.shields.io/badge/Rails-v7.0.0-brightgreen.svg" alt="rails version">
   </a>
   <a href="https://circleci.com/gh/darokel/bento">
     <img src="https://circleci.com/gh/darokel/bento.svg?style=svg" alt="circle ci badge">
