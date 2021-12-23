@@ -37,14 +37,13 @@ Bento is designed to be lean and healthy with all the essentials for a productiv
 It provides a few staples:
 
 - All the major [Rails](https://rubyonrails.org/) 6 defaults (except for Test Unit in favour of Rspec)
-- Sprockets with [ES Build](https://github.com/evanw/esbuild) via the [JS Bundling](https://github.com/rails/jsbundling-rails) and [CSS Bundling](https://github.com/rails/cssbundling-rails) gems (The new Rails 7 way of bundling JS and CSS)
+- Modern JavaScript bundled with [ES Build](https://github.com/evanw/esbuild) via the [JS Bundling](https://github.com/rails/jsbundling-rails) gem
+- Modern CSS powered by Dart Sass and the [CSS Bundling](https://github.com/rails/cssbundling-rails) gems
 - [Hotwire](https://hotwire.dev/) Stack ([Turbo](https://turbo.hotwire.dev/) & [Stimulus](https://stimulus.hotwire.dev/)) for SPA-like JavaScript sprinkles without the SPA complexity.
 - [Jest](https://jestjs.io/) for easy JavaScript testing. See `app/javascript/controllers` for an example
 - [Sidekiq](https://sidekiq.org/) for background jobs
 - [Rspec](https://rspec.info/) for unit and system tests along with [simplecov](https://github.com/simplecov-ruby/simplecov) for coverage support 
 - [Capybara](https://github.com/teamcapybara/capybara) with headless [Selenium](https://www.selenium.dev/documentation/en/) integration tests and a pre-configured [CircleCI](https://circleci.com/) config ready to go. See `spec/system` for an example. 
-
-See [GOALS.md](GOALS.md) for more information on what's inside Bento and what isn't.
 
 ## Getting Started
 
@@ -94,14 +93,6 @@ There are also some scripts available to help with deploying to Heroku and setti
 See [DEPLOYMENT.md](DEPLOYMENT.md) for more info on using the template with Heroku.
 
 Alternatively, you're able to deploy this to any platform of your choice. 
-
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md).
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 

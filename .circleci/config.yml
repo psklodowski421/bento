@@ -36,7 +36,6 @@ jobs:
       - *default_docker_ruby_executor
     steps:
       - checkout
-      # Which version of bundler?
       - run:
           name: Which bundler?
           command: bundle -v
@@ -47,7 +46,10 @@ jobs:
             - bento-bundle-v2-
       - run:
           name: Bundle Install
-          command: bundle check --path vendor/bundle || bundle install --deployment
+          command: |
+            bundle config set --local path vendor/bundle
+            bundle config set --local deployment true
+            bundle check || bundle install
       # Store bundle cache if it's changed
       - save_cache:
           key: bento-bundle-v2-{{ checksum "Gemfile.lock" }}

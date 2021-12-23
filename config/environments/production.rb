@@ -1,4 +1,3 @@
-require Rails.root.join('config/smtp')
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
@@ -64,8 +63,7 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
-  cache_servers = %w[redis://cache-01:6379/0 redis://cache-02:6379/0]
-  config.cache_store = :redis_cache_store, { url: cache_servers }
+  config.cache_store = :redis_cache_store, { url: ENV['REDIS_CACHE_URL'] || ENV['REDIS_URL'] }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
@@ -73,7 +71,15 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = SMTP_SETTINGS
+  config.action_mailer.smtp_settings = {
+    address: ENV.fetch('SMTP_ADDRESS'),
+    authentication: :plain,
+    domain: ENV.fetch('SMTP_DOMAIN'),
+    enable_starttls_auto: true,
+    password: ENV.fetch('SMTP_PASSWORD'),
+    port: 587,
+    user_name: ENV.fetch('SMTP_USERNAME')
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
